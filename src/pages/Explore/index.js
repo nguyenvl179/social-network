@@ -12,6 +12,7 @@ const Explore = (props) => {
 
     const [dataImg, setDataImg] = useState([]);
 
+    // Function change status
     const changeStatus = (value) => {
         if(value === 1){
             setData({
@@ -31,10 +32,12 @@ const Explore = (props) => {
         document.title = "Explore"
     }, []);
 
+    // Function hidden menu status
     const clickHidden = () => {
         document.querySelector('.post-form-panel').classList.toggle('active');
     }
 
+    // Function upload images
     const changeFile = (e) => {
         let images = Array.from(e.target.files)
 
@@ -54,6 +57,7 @@ const Explore = (props) => {
 
     }
 
+    // Function show images
     const imageShow = () => {
         return dataImg.map((item,index) => {
             return <div key={index} className="image-contaniner d-flex position-relative">
@@ -63,6 +67,7 @@ const Explore = (props) => {
         })
     }
 
+    // Function delete image
     const deleteImage = (index) => {
         setDataImg(
             dataImg.filter((img) => img != index)
@@ -94,12 +99,14 @@ const Explore = (props) => {
                                         <input id="inputFile" type="file" multiple className="form-control d-none" accept="image/*" onChange={changeFile}/>
                                         
                                         <div className="post-form-control-comunity mx-3">
+                                            {/* Show status clicked and hidden menu status */}
                                             <span className="status border-radius" onClick={() => clickHidden()}>
-                                                <i className="bx bx-globe" /> {data.status  }
-                  </span>
+                                                <i className="bx bx-globe" /> {data.status}
+                                            </span>
                                             <div className="user-panel post-form-panel box-shadow border-radius">
                                                 <h5 className="color-black">Who can reply?</h5>
                                                 <h6>Choose who can reply to this Tweet?</h6>
+                                                {/* Click change status */}
                                                 <ul>
                                                     <li>
                                                         <a href='#' onClick={() => {changeStatus(1)}}><i className="bx bx-globe"/> Everyone</a>
@@ -115,6 +122,7 @@ const Explore = (props) => {
                                         <button className="btn btn-post-form btn-border-radius">Tweet</button>
                                     </div>
                                 </div>
+                                {/* Create images */}
                                 <div className="row d-flex mt-3 flex-wrap justify-content-start">
                                     {imageShow()}
                                 </div>
