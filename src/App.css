@@ -694,3 +694,28 @@ nav, .menu-clone-contain {
     font-size: 1.6rem;
     vertical-align: middle;
 }
+
+.image-contaniner {
+    width: 15rem;
+    height: 15rem;
+    padding: 0;
+    margin: 0rem 1.5rem 1.5rem 0rem;
+}
+
+.image-contaniner-remove {
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+    text-align: center;
+    line-height: 3rem;
+    border-radius: 50%;
+    background: var(--txtColorThird);
+    color: var(--background);
+    opacity: 0.8;
+    right: -1.5rem;
+    top: -1.5rem;
+}
+
+.image-contaniner-remove:hover {
+    opacity: 1;
+}

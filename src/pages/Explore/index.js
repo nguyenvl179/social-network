@@ -36,14 +36,37 @@ const Explore = (props) => {
     }
 
     const changeFile = (e) => {
-        // let arrImg = e.target.files.map((item,index) => {
-        //     return item.name
-        // })
-        let arrImg = Array.from(e.target.files)
-        
-        setDataImg(arrImg);
-        
-        console.log(arrImg);
+        let images = Array.from(e.target.files)
+
+        setDataImg( dataImg =>
+            [
+                ...dataImg,
+                ...images.map((item,index) => {
+                    return {
+                        name: item.name,
+                        url: URL.createObjectURL(item),
+                        file: item,
+
+                    }
+                })
+            ]
+        )
+
+    }
+
+    const imageShow = () => {
+        return dataImg.map((item,index) => {
+            return <div key={index} className="image-contaniner d-flex position-relative">
+            <img src={item.url} alt='image' />
+            <span className="position-absolute image-contaniner-remove" onClick={() => {deleteImage(item)}}>X</span>
+        </div>
+        })
+    }
+
+    const deleteImage = (index) => {
+        setDataImg(
+            dataImg.filter((img) => img != index)
+        );
     }
 
     return (
@@ -68,7 +91,8 @@ const Explore = (props) => {
                                 <div className="post-form-control d-flex flex-wrap mt-3">
                                     <div className="post-form-control-select d-flex flex-wrap">
                                         <label htmlFor="inputFile"><i className="bx bxs-image-alt" /></label>
-                                        <input id="inputFile" type="file" multiple className="form-control d-none" onChange={changeFile}/>
+                                        <input id="inputFile" type="file" multiple className="form-control d-none" accept="image/*" onChange={changeFile}/>
+                                        
                                         <div className="post-form-control-comunity mx-3">
                                             <span className="status border-radius" onClick={() => clickHidden()}>
                                                 <i className="bx bx-globe" /> {data.status  }
@@ -91,7 +115,11 @@ const Explore = (props) => {
                                         <button className="btn btn-post-form btn-border-radius">Tweet</button>
                                     </div>
                                 </div>
+                                <div className="row d-flex mt-3 flex-wrap justify-content-start">
+                                    {imageShow()}
+                                </div>
                             </div>
+                            
                             <Posts /></div>
                         <div className="col-md-3 order-md-1 order-0">
                             <div className="vertical-trending border-radius box-shadow mt-3 mt-md-0">
