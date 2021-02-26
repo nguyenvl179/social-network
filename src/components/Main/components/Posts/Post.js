@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react';
 import Comment from './Comment';
 import ImagePost from './ImagePost';
 
-const Post = () => {
+const Post = (props) => {
 
     useEffect(() => {
         var modalImage = document.querySelector(".modal-box");
@@ -51,29 +51,8 @@ const Post = () => {
         });
       }, []);
 
-    const [ImagesPost, setImagesPost] = useState([
-        {
-            urlImage: 'images/post-image-1.jpg'
-        },
-        {
-            urlImage: 'images/post-image-2.jpg'
-        },
-        {
-            urlImage: 'images/post-image-3.jpg'
-        },
-        {
-            urlImage: 'images/post-image-4.jpg'
-        },
-        {
-            urlImage: 'images/post-image-5.jpg'
-        },
-        {
-            urlImage: 'images/post-image-6.jpg'
-        },
-        {
-            urlImage: 'images/post-image-5.jpg'
-        }
-    ]);
+    const Images = props.img;
+    const Status = props.status;
     
     var modalImage = document.querySelector(".modal-box");
     var closeModal = document.querySelector(".btn-close-modal-box");
@@ -81,6 +60,37 @@ const Post = () => {
     var ImageModal = null;
     var ImageShow = document.querySelector(".modal-box-img");
     var index = 0;
+
+
+    const [image, setImage] = useState({
+        name: '',
+        url: ''
+    });
+
+    const changeFile = (e) => {
+        
+        setImage({
+            name: e.target.files[0].name,
+            url: URL.createObjectURL(e.target.files[0])
+        })
+        console.log(image)
+    }
+
+    const deleteImage = () => {
+        setImage({
+            name: '',
+            url: ''
+        });
+    }
+
+    const showImage = () => {
+        if(image.url !== "" && image.name !== ""){
+            return <div className="image-contaniner d-flex position-relative img-comment">
+                        <img src={image.url} alt={image.name} />
+                        <span className="position-absolute image-contaniner-remove" onClick={() => {deleteImage()}}>X</span>
+                </div>            
+        }
+    }
 
 
     return (
@@ -105,12 +115,12 @@ const Post = () => {
                     className="post-img d-flex border-radius flex-wrap"
                 >
                     {
-                        ImagesPost.map((image, index) => 
+                        Images.map((image, index) => 
                             <ImagePost
                                 urlImage={image.urlImage}
                                 key={index}
                                 idx={index}
-                                total={ImagesPost.length}
+                                total={Images.length}
                             />
                         )
                     }
@@ -153,8 +163,8 @@ const Post = () => {
                     <div className="form-group flex-fill w-50 post-comment-form border-radius overflow-hidden">
                         <div className="input-group">
                             <input type="text" className="form-control shadow-none py-3" placeholder="Tweet your reply" />
-                            <label className="input-group-text" htmlFor="inputGroupFile01"><i className='bx bx-bx bxs-image-alt'></i></label>
-                            <input type="file" className="form-control d-none" id="inputGroupFile01" />
+                            <label className="input-group-text" htmlFor={`inputGroupFile${props.idx}`}><i className='bx bx-bx bxs-image-alt'></i></label>
+                            <input type="file" className="form-control d-none" id={`inputGroupFile${props.idx}`}  onChange={changeFile}/>
                             <label className="input-group-text">
                                 <i className='bx bx-send' ></i>
                             </label>
@@ -162,6 +172,10 @@ const Post = () => {
                     </div>
                 </div>
                 <hr />
+                {/* Create images */}
+                <div className="row d-flex mt-3 flex-wrap justify-content-start">
+                    {showImage()}
+                </div>
                 <Comment
                     cmtId="1"
                     userImg="images/user.jpg"

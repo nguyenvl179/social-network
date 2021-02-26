@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Footer from '../../components/Footer';
 import MenuClone from '../../components/Main/components/MenuClone';
 import Posts from '../../components/Main/components/Posts';
+import Post from '../../components/Main/components/Posts/Post';
 import VerticalMenu from '../../components/Main/components/VerticalMenu';
 
 const Bookmark = () => {
@@ -9,6 +10,67 @@ const Bookmark = () => {
     useEffect(() => {
         document.title = "Bookmark"
     }, []);
+
+
+    const posts = [
+    {
+        idPost: 1,
+        status: "Traveling – it leaves you speechless, then turns you into a storyteller.",
+        img: [
+            {
+                urlImage: 'images/post-image-1.jpg'
+            },
+            {
+                urlImage: 'images/post-image-2.jpg'
+            },
+            {
+                urlImage: 'images/post-image-3.jpg'
+            },
+            {
+                urlImage: 'images/post-image-4.jpg'
+            },
+            {
+                urlImage: 'images/post-image-5.jpg'
+            },
+            {
+                urlImage: 'images/post-image-6.jpg'
+            }
+        ]
+    },
+    {
+        idPost: 2,
+        status: "Traveling – it leaves you speechless, then turns you into a storyteller.",
+        img: [
+            {
+                urlImage: 'images/post-image-1.jpg'
+            },
+            {
+                urlImage: 'images/post-image-2.jpg'
+            },
+            {
+                urlImage: 'images/post-image-3.jpg'
+            },
+            {
+                urlImage: 'images/post-image-4.jpg'
+            }
+        ]
+    },
+    {
+        idPost: 3,
+        status: "Status 123.",
+        img: [
+            {
+                urlImage: 'images/post-image-1.jpg'
+            },
+            {
+                urlImage: 'images/post-image-2.jpg'
+            },
+            {
+                urlImage: 'images/post-image-3.jpg'
+            }
+        ]
+    }
+    ];
 
     return (
         <div>
@@ -20,14 +82,18 @@ const Bookmark = () => {
                         </div>    
                         <div className="col-md-9">
                             <div className="post-comment-form post-search-form box-shadow border-radius overflow-hidden d-flex flex-wrap mt-md-0 mt-4 align-items-center">
-                                <label className="input-group-text" for="inputGroupFile01"><i class='bx bx-search' ></i></label>
+                                <label className="input-group-text" htmlFor="inputGroupFile01"><i className='bx bx-search' ></i></label>
                                 <input type="text" className="form-control shadow-none py-3 w-50 flex-fill" placeholder="Search" />
                                 <input type="file" className="form-control d-none" id="inputGroupFile01" />
                                 <div className="post-search-btn-contain">
                                     <button className="btn btn-border-radius btn-post-form btn-post-search">Search</button> 
                                 </div>
                             </div>
-                            <Posts />
+                            {
+                                posts.map((item, index) => {
+                                    return <Post key={index} idx={item.idPost} status={item.status} img={item.img} />
+                                })
+                            }
                         </div>
                         <MenuClone />
                     </div>

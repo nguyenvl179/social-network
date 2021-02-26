@@ -2,6 +2,7 @@ import React, {useEffect,useState} from 'react';
 import Footer from '../../components/Footer';
 import MenuClone from '../../components/Main/components/MenuClone';
 import Posts from '../../components/Main/components/Posts';
+import Post from '../../components/Main/components/Posts/Post';
 
 const Explore = (props) => {
 
@@ -11,6 +12,66 @@ const Explore = (props) => {
     })
 
     const [dataImg, setDataImg] = useState([]);
+
+    const posts = [
+        {
+            idPost: 1,
+            status: "Traveling – it leaves you speechless, then turns you into a storyteller.",
+            img: [
+                {
+                    urlImage: 'images/post-image-1.jpg'
+                },
+                {
+                    urlImage: 'images/post-image-2.jpg'
+                },
+                {
+                    urlImage: 'images/post-image-3.jpg'
+                },
+                {
+                    urlImage: 'images/post-image-4.jpg'
+                },
+                {
+                    urlImage: 'images/post-image-5.jpg'
+                },
+                {
+                    urlImage: 'images/post-image-6.jpg'
+                }
+            ]
+        },
+        {
+            idPost: 2,
+            status: "Traveling – it leaves you speechless, then turns you into a storyteller.",
+            img: [
+                {
+                    urlImage: 'images/post-image-1.jpg'
+                },
+                {
+                    urlImage: 'images/post-image-2.jpg'
+                },
+                {
+                    urlImage: 'images/post-image-3.jpg'
+                },
+                {
+                    urlImage: 'images/post-image-4.jpg'
+                }
+            ]
+        },
+        {
+            idPost: 3,
+            status: "Status 123.",
+            img: [
+                {
+                    urlImage: 'images/post-image-1.jpg'
+                },
+                {
+                    urlImage: 'images/post-image-2.jpg'
+                },
+                {
+                    urlImage: 'images/post-image-3.jpg'
+                }
+            ]
+        }
+        ];
 
     // Function change status
     const changeStatus = (value) => {
@@ -57,16 +118,6 @@ const Explore = (props) => {
 
     }
 
-    // Function show images
-    const imageShow = () => {
-        return dataImg.map((item,index) => {
-            return <div key={index} className="image-contaniner d-flex position-relative">
-                        <img src={item.url} alt='image' />
-                        <span className="position-absolute image-contaniner-remove" onClick={() => {deleteImage(index)}}>X</span>
-                    </div>
-        })
-    }
-
     // Function delete image
     const deleteImage = (index) => {
         setDataImg(
@@ -96,6 +147,7 @@ const Explore = (props) => {
                                 <div className="post-form-control d-flex flex-wrap mt-3">
                                     <div className="post-form-control-select d-flex flex-wrap">
                                         <label htmlFor="inputFile"><i className="bx bxs-image-alt" /></label>
+                                        {/* upload images on layout */}
                                         <input id="inputFile" type="file" multiple className="form-control d-none" accept="image/*" onChange={changeFile}/>
                                         
                                         <div className="post-form-control-comunity mx-3">
@@ -123,12 +175,22 @@ const Explore = (props) => {
                                     </div>
                                 </div>
                                 {/* Create images */}
-                                <div className="row d-flex mt-3 flex-wrap justify-content-start">
-                                    {imageShow()}
+                                <div className="d-flex mt-3 flex-wrap justify-content-start">
+                                    {dataImg.map((item,index) => {
+                                        return <div key={index} className="image-contaniner d-flex position-relative">
+                                        <img src={item.url} alt='image' />
+                                        <span className="position-absolute image-contaniner-remove" onClick={() => {deleteImage(item)}}>X</span>
+                                    </div>
+                                    })}
                                 </div>
                             </div>
                             
-                            <Posts /></div>
+                            {
+                                posts.map((item, index) => {
+                                    return <Post key={index} idx={item.idPost} status={item.status} img={item.img} />
+                                })
+                            }
+                            </div>
                         <div className="col-md-3 order-md-1 order-0">
                             <div className="vertical-trending border-radius box-shadow mt-3 mt-md-0">
                                 <h5 className="color-black">Trends for you</h5>
@@ -154,11 +216,11 @@ const Explore = (props) => {
                             </div>
                         </div>
                         <MenuClone />
-                        </div>
+                    </div>
                 </div>
             </div>
             <Footer />
-            </div>
+        </div>
 
     );
 };
