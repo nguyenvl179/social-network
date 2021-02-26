@@ -61,16 +61,16 @@ const Explore = (props) => {
     const imageShow = () => {
         return dataImg.map((item,index) => {
             return <div key={index} className="image-contaniner d-flex position-relative">
-            <img src={item.url} alt='image' />
-            <span className="position-absolute image-contaniner-remove" onClick={() => {deleteImage(item)}}>X</span>
-        </div>
+                        <img src={item.url} alt='image' />
+                        <span className="position-absolute image-contaniner-remove" onClick={() => {deleteImage(index)}}>X</span>
+                    </div>
         })
     }
 
     // Function delete image
     const deleteImage = (index) => {
         setDataImg(
-            dataImg.filter((img) => img != index)
+            dataImg.filter((item, idx) => idx !== index)
         );
     }
 
@@ -135,19 +135,19 @@ const Explore = (props) => {
                                 <hr />
                                 <ul>
                                     <li>
-                                        <a href>#programming</a>
+                                        <a href="">#programming</a>
                                         <h5>213k Tweets</h5>
                                     </li>
                                     <li>
-                                        <a href>#devchallenges</a>
+                                        <a href="">#devchallenges</a>
                                         <h5>213k Tweets</h5>
                                     </li>
                                     <li>
-                                        <a href>#frontend</a>
+                                        <a href="">#frontend</a>
                                         <h5>213k Tweets</h5>
                                     </li>
                                     <li>
-                                        <a href>#helsinki</a>
+                                        <a href="">#helsinki</a>
                                         <h5>213k Tweets</h5>
                                     </li>
                                 </ul>
