@@ -1,20 +1,40 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import './style.css'
 
 export default function Login() {
 
-    const changeSignUp = () => {
-        document.querySelector('.form .tab-header #signIn').classList.remove('active');
-        document.querySelector('.form .tab-header #signUp').classList.add('active');
+    let headerSignIn = null;
+    let headerSignUp = null;
+    let contentSignIn = null;
+    let contentSignUp = null;
+
+    useEffect(() => {
+        headerSignIn = document.querySelector('.form .tab-header #signIn');
+        headerSignUp = document.querySelector('.form .tab-header #signUp');
         
-        document.querySelector('.form .tab-content #signIn-body').classList.remove('active');
-        document.querySelector('.form .tab-content #signUp-body').classList.add('active');
+        contentSignIn = document.querySelector('.form .tab-content #signIn-body');
+        contentSignUp = document.querySelector('.form .tab-content #signUp-body');
+    }, [])
+
+    const changeSignUp = () => {
+        console.log("Hello")
+        if(headerSignIn && headerSignUp && contentSignIn && contentSignUp){
+            headerSignIn.classList.remove('active');
+            headerSignUp.classList.add('active');
+            
+            contentSignIn.classList.remove('active');
+            contentSignUp.classList.add('active');            
+        }
      }
      const changeSignIn = () => {
-        document.querySelector('.form .tab-header #signUp').classList.remove('active');
-        document.querySelector('.form .tab-header #signIn').classList.add('active');
-        
-        document.querySelector('.form .tab-content #signUp-body').classList.remove('active');
-        document.querySelector('.form .tab-content #signIn-body').classList.add('active');
+        if(headerSignIn && headerSignUp && contentSignIn && contentSignUp){
+            headerSignUp.classList.remove('active');
+            headerSignIn.classList.add('active');
+            
+            contentSignUp.classList.remove('active');
+            contentSignIn.classList.add('active');          
+        }
+        console.log("Helo")
      }
 
     return (
@@ -22,24 +42,24 @@ export default function Login() {
             <div className="form">
                 <form>
                     <div className="tab-header">
-                        <div id="signIn" onclick={changeSignIn} className="active">Sign In</div>
-                        <div id="signUp" onclick={changeSignUp}>Sign Up</div>
+                        <div id="signIn" onClick={() => changeSignIn()} className="active">Sign In</div>
+                        <div id="signUp" onClick={() => changeSignUp()}>Sign Up</div>
                     </div>
                     <div className="tab-content">
                         <div id="signIn-body" className="tab-body active">
                             <div className="form-group">
                                 <label htmlFor="username">Username</label>
-                                <input type="email" className="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter your username..." />
+                                <input type="email" className="form-control mt-2" id="username" aria-describedby="emailHelp" placeholder="Enter your username..." />
                             </div>
-                            <div className="form-group">
+                            <div className="form-group mt-3">
                                 <label htmlFor="password">Password</label>
-                                <input type="password" className="form-control" id="password" placeholder="Enter your password..." />
+                                <input type="password" className="form-control mt-2" id="password" placeholder="Enter your password..." />
                             </div>
-                            <div className="form-group form-check">
+                            <div className="form-group form-check mt-3">
                                 <input type="checkbox" className="form-check-input" id="check" />
                                 <label className="form-check-label" htmlFor="check">Remember me</label>
                             </div>
-                            <div className="form-group">
+                            <div className="form-group mt-4">
                                 <button type="button" className="btn btn-primary">Sign In</button>
                             </div>
                         </div>
@@ -48,19 +68,19 @@ export default function Login() {
                                 <label htmlFor="username">Username</label>
                                 <input type="email" className="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter your username..." />
                             </div>
-                            <div className="form-group">
+                            <div className="form-group mt-3">
                                 <label htmlFor="password">Password</label>
                                 <input type="password" className="form-control" id="password" placeholder="Enter your password..." />
                             </div>
-                            <div className="form-group">
+                            <div className="form-group mt-3">
                                 <label htmlFor="password">Password</label>
                                 <input type="password" className="form-control" id="password" placeholder="Re-enter your password..." />
                             </div>
-                            <div className="form-group">
+                            <div className="form-group mt-3">
                                 <label htmlFor="email">Email</label>
                                 <input type="email" className="form-control" id="email" placeholder="Enter your email..." />
                             </div>
-                            <div className="form-group">
+                            <div className="form-group mt-4">
                                 <button type="button" className="btn btn-primary">Sign Up</button>
                             </div>
                         </div>

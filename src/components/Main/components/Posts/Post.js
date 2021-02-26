@@ -108,7 +108,7 @@ const Post = (props) => {
                     </div>                           
                 </div>
                 <p className="post-content mt-3">
-                    Traveling – it leaves you speechless, then turns you into a storyteller.
+                    {props.status}
                 </p>
                 <div
                     className="post-img d-flex border-radius flex-wrap"
