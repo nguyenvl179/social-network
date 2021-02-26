@@ -179,7 +179,7 @@ const Explore = (props) => {
                                     {dataImg.map((item,index) => {
                                         return <div key={index} className="image-contaniner d-flex position-relative">
                                         <img src={item.url} alt='image' />
-                                        <span className="position-absolute image-contaniner-remove" onClick={() => {deleteImage(item)}}>X</span>
+                                        <span className="position-absolute image-contaniner-remove" onClick={() => {deleteImage(index)}}>X</span>
                                     </div>
                                     })}
                                 </div>
