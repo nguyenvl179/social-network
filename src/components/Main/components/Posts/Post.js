@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react';
 import Comment from './Comment';
 import ImagePost from './ImagePost';
 
-const Post = () => {
+const Post = (props) => {
 
     useEffect(() => {
         var modalImage = document.querySelector(".modal-box");
@@ -154,7 +154,7 @@ const Post = () => {
                         <div className="input-group">
                             <input type="text" className="form-control shadow-none py-3" placeholder="Tweet your reply" />
                             <label className="input-group-text" htmlFor="inputGroupFile01"><i className='bx bx-bx bxs-image-alt'></i></label>
-                            <input type="file" className="form-control d-none" id="inputGroupFile01" />
+                            <input type="file" className="form-control d-none" id="inputGroupFile01"  onChange={props.changeFile}/>
                             <label className="input-group-text">
                                 <i className='bx bx-send' ></i>
                             </label>
@@ -162,6 +162,10 @@ const Post = () => {
                     </div>
                 </div>
                 <hr />
+                {/* Create images */}
+                <div className="row d-flex mt-3 flex-wrap justify-content-start">
+                    {props.showImage()}
+                </div>
                 <Comment
                     cmtId="1"
                     userImg="images/user.jpg"

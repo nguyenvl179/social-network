@@ -57,16 +57,6 @@ const Explore = (props) => {
 
     }
 
-    // Function show images
-    const imageShow = () => {
-        return dataImg.map((item,index) => {
-            return <div key={index} className="image-contaniner d-flex position-relative">
-            <img src={item.url} alt='image' />
-            <span className="position-absolute image-contaniner-remove" onClick={() => {deleteImage(item)}}>X</span>
-        </div>
-        })
-    }
-
     // Function delete image
     const deleteImage = (index) => {
         setDataImg(
@@ -96,6 +86,7 @@ const Explore = (props) => {
                                 <div className="post-form-control d-flex flex-wrap mt-3">
                                     <div className="post-form-control-select d-flex flex-wrap">
                                         <label htmlFor="inputFile"><i className="bx bxs-image-alt" /></label>
+                                        {/* upload images on layout */}
                                         <input id="inputFile" type="file" multiple className="form-control d-none" accept="image/*" onChange={changeFile}/>
                                         
                                         <div className="post-form-control-comunity mx-3">
@@ -123,12 +114,18 @@ const Explore = (props) => {
                                     </div>
                                 </div>
                                 {/* Create images */}
-                                <div className="row d-flex mt-3 flex-wrap justify-content-start">
-                                    {imageShow()}
+                                <div className="d-flex mt-3 flex-wrap justify-content-start">
+                                    {dataImg.map((item,index) => {
+                                        return <div key={index} className="image-contaniner d-flex position-relative">
+                                        <img src={item.url} alt='image' />
+                                        <span className="position-absolute image-contaniner-remove" onClick={() => {deleteImage(item)}}>X</span>
+                                    </div>
+                                    })}
                                 </div>
                             </div>
                             
-                            <Posts /></div>
+                            <Posts/>
+                            </div>
                         <div className="col-md-3 order-md-1 order-0">
                             <div className="vertical-trending border-radius box-shadow mt-3 mt-md-0">
                                 <h5 className="color-black">Trends for you</h5>
@@ -154,11 +151,11 @@ const Explore = (props) => {
                             </div>
                         </div>
                         <MenuClone />
-                        </div>
+                    </div>
                 </div>
             </div>
             <Footer />
-            </div>
+        </div>
 
     );
 };

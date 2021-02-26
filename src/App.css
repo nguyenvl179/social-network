@@ -719,3 +719,11 @@ nav, .menu-clone-contain {
 .image-contaniner-remove:hover {
     opacity: 1;
 }
+.img-comment {
+    height: 0;
+    visibility: hidden;
+}
+.img-show {
+    height: 15rem;
+    visibility: visible;
+}
