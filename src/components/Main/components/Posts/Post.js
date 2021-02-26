@@ -73,7 +73,6 @@ const Post = (props) => {
             name: e.target.files[0].name,
             url: URL.createObjectURL(e.target.files[0])
         })
-        console.log(image)
     }
 
     const deleteImage = () => {
