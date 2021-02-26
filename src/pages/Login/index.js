@@ -38,7 +38,7 @@ export default function Login() {
      }
 
     return (
-        <div className="wrapper">
+        <div className="wrapper-login">
             <div className="form">
                 <form>
                     <div className="tab-header">
@@ -57,7 +57,7 @@ export default function Login() {
                             </div>
                             <div className="form-group form-check mt-3">
                                 <input type="checkbox" className="form-check-input" id="check" />
-                                <label className="form-check-label" htmlFor="check">Remember me</label>
+                                <label className="form-check-label p-2" htmlFor="check">Remember me</label>
                             </div>
                             <div className="form-group mt-4">
                                 <button type="button" className="btn btn-primary">Sign In</button>

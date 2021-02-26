@@ -725,11 +725,11 @@ nav, .menu-clone-contain {
 }
 
 /* Login */
-.wrapper {
+.wrapper-login {
     width: 0;
     height: 0;
-    border-top: 80rem solid rgb(73 73 245);
-    border-right: 75rem solid transparent;
+    border-top: 110rem solid rgb(73, 73, 245);
+    border-right: 125rem solid transparent;
 }
 .form {
     position: absolute;
@@ -744,8 +744,6 @@ nav, .menu-clone-contain {
 }
 .form .tab-header {
     display: flex;
-    height: 3rem;
-    line-height: 3rem;
 }
 .form .tab-header > div {
     background: #ddd;
@@ -762,9 +760,15 @@ nav, .menu-clone-contain {
 .form .tab-content {
     padding: 2rem;
 }
+.form .tab-content .form-group input {
+    padding: 1rem;
+    border-radius: 0.7rem;
+}
 .form .tab-content .form-group button {
     width: 100% !important;
     text-transform: uppercase;
+    padding: 1rem;
+    border-radius: 0.7rem;
 }
 .form .tab-content > .tab-body.active {
     display: block;
