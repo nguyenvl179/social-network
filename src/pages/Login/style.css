@@ -67,3 +67,9 @@
 .appear {
     display: block;
 }
+
+@media only screen and (max-width: 425px) {
+    .form {
+        width: 30rem;
+    }
+}
