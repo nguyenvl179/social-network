@@ -1,6 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const ProfileContainer = () => {
+
+    const [avatarImg, setAvatarImg] = useState({
+        name: 'user',
+        url: "images/user.jpg",
+        urlAva: ''
+    });
+
+    // Functions update avatar new
+    const changeFile= (e) => {
+        setAvatarImg({
+            name: e.target.files[0].name,
+            url: avatarImg.url,
+            urlAva: URL.createObjectURL(e.target.files[0])
+        })
+    }
+
+    const showAvatar = () => {
+        if(avatarImg.urlAva !== ''){
+            return <img className="position-absolute" src={avatarImg.urlAva} style={{top:'0',left:'0'}}/>
+        }
+    }
+
+    const saveUpdate = () => {
+        let avatarUpdate = avatarImg.urlAva
+        setAvatarImg({
+            name: '',
+            url: avatarUpdate,
+            urlAva: ''
+        })
+    }
+
+    const closeUpdate = () => {
+        setAvatarImg({
+            name: '',
+            url: avatarImg.url,
+            urlAva: ''
+        })
+    }
+
     return (
         <div>
             <div className="image-bg-profile">
@@ -13,7 +52,7 @@ const ProfileContainer = () => {
                             <div className="row">
                                 <div className="col-md-2">
                                     <div className="box-image-profile border-radius">
-                                        <img className="border-radius" src="images/user.jpg" alt="Image of User" />
+                                        <img className="border-radius" src={avatarImg.url} alt="Image of User" />
                                         <div className="box-image-profile-overlay" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                             <i className='bx bxs-camera' ></i>
                                         </div>
@@ -28,16 +67,18 @@ const ProfileContainer = () => {
                                                 <div className="modal-body">
                                                     <div className="row">
                                                         <div className="col-12 text-center">
-                                                            <label htmlFor="ImagePhoto" className="ImagePhotoSelect border-radius">
+                                                            <label htmlFor="ImagePhoto" className="ImagePhotoSelect border-radius position-relative">
                                                                 <i className='bx bxs-image-add'></i>
+                                                                {/* Show update avatar */}
+                                                                {showAvatar()}
                                                             </label>
-                                                            <input id="ImagePhoto" type="file" className="form-control d-none" />
+                                                            <input id="ImagePhoto" type="file" className="form-control d-none" onChange={changeFile}/>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div className="modal-footer">
-                                                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="button" className="btn btn-primary">Save changes</button>
+                                                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={closeUpdate}>Close</button>
+                                                    <button type="button" className="btn btn-primary" onClick={saveUpdate}>Save changes</button>
                                                 </div>
                                             </div>
                                         </div>
