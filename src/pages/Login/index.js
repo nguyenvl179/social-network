@@ -38,7 +38,7 @@ export default function Login() {
      }
 
     return (
-        <div className="wrapper-login">
+        <div className="wrapper">
             <div className="form">
                 <form>
                     <div className="tab-header">
