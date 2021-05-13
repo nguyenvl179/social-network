@@ -6,13 +6,20 @@ import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom
 import Home from './pages/Home';
 import Explore from './pages/Explore';
 import Bookmark from './pages/Bookmark';
+import Login from './pages/Login';
 import Header from './components/Header';
 import routes from './pages/route';
 
 function App() {
+  let isLogin = true;
+
   return (
     <div className="App">
-      <Router>
+    {!isLogin ?
+      <Login />
+      :
+      (
+        <Router>
         <Header />
         <Switch>
             <Route 
@@ -40,7 +47,10 @@ function App() {
             >
             </Route>
         </Switch>        
-      </Router>
+        </Router>
+      )
+    } 
+      
     </div>
   );
 }

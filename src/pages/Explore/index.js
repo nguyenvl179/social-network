@@ -1,62 +1,196 @@
-import React, {useEffect} from 'react';
+import React, {useEffect,useState} from 'react';
 import Footer from '../../components/Footer';
 import MenuClone from '../../components/Main/components/MenuClone';
 import Posts from '../../components/Main/components/Posts';
+import Post from '../../components/Main/components/Posts/Post';
 
 const Explore = (props) => {
+
+    const [data, setData] = useState({
+        value: 1,
+        status: 'Everyone can reply'
+    })
+
+    const [dataImg, setDataImg] = useState([]);
+
+    const posts = [
+        {
+            idPost: 1,
+            status: "Traveling – it leaves you speechless, then turns you into a storyteller.",
+            img: [
+                {
+                    urlImage: 'images/post-image-1.jpg'
+                },
+                {
+                    urlImage: 'images/post-image-2.jpg'
+                },
+                {
+                    urlImage: 'images/post-image-3.jpg'
+                },
+                {
+                    urlImage: 'images/post-image-4.jpg'
+                },
+                {
+                    urlImage: 'images/post-image-5.jpg'
+                },
+                {
+                    urlImage: 'images/post-image-6.jpg'
+                }
+            ]
+        },
+        {
+            idPost: 2,
+            status: "Traveling – it leaves you speechless, then turns you into a storyteller.",
+            img: [
+                {
+                    urlImage: 'images/post-image-1.jpg'
+                },
+                {
+                    urlImage: 'images/post-image-2.jpg'
+                },
+                {
+                    urlImage: 'images/post-image-3.jpg'
+                },
+                {
+                    urlImage: 'images/post-image-4.jpg'
+                }
+            ]
+        },
+        {
+            idPost: 3,
+            status: "Status 123.",
+            img: [
+                {
+                    urlImage: 'images/post-image-1.jpg'
+                },
+                {
+                    urlImage: 'images/post-image-2.jpg'
+                },
+                {
+                    urlImage: 'images/post-image-3.jpg'
+                }
+            ]
+        }
+        ];
+
+    // Function change status
+    const changeStatus = (value) => {
+        if(value === 1){
+            setData({
+                value: 1,
+                status: 'Everyone can reply',
+            })
+        }else{
+            setData({
+                value: 2,
+                status: 'People can reply',
+            })
+        }
+        document.querySelector('.post-form-panel').classList.remove('active');
+    }
 
     useEffect(() => {
         document.title = "Explore"
     }, []);
 
+    // Function hidden menu status
+    const clickHidden = () => {
+        document.querySelector('.post-form-panel').classList.toggle('active');
+    }
+
+    // Function upload images
+    const changeFile = (e) => {
+        let images = Array.from(e.target.files)
+
+        setDataImg( dataImg =>
+            [
+                ...dataImg,
+                ...images.map((item,index) => {
+                    return {
+                        name: item.name,
+                        url: URL.createObjectURL(item),
+                        file: item,
+
+                    }
+                })
+            ]
+        )
+
+    }
+
+    // Function delete image
+    const deleteImage = (index) => {
+        setDataImg(
+            dataImg.filter((item, idx) => idx !== index)
+        );
+    }
+
     return (
         <div>
             <div className="main">
                 <div className="container mt-4">
-                    <div className="row">   
+                    <div className="row">
                         <div className="col-md-9 order-md-0 order-1">
-                            <div class="post-form border-radius box-shadow mt-md-0 mt-3">
-                                <h5 class="color-black">Tweet something</h5>
+                            <div className="post-form border-radius box-shadow mt-md-0 mt-3">
+                                <h5 className="color-black">Tweet something</h5>
                                 <hr />
-                                <div class="post-comment-box d-flex flex-wrap">
-                                    <div class="user-img">
-                                        <img class="border-radius" src="images/user.jpg" alt="Image of User" />
+                                <div className="post-comment-box d-flex flex-wrap">
+                                    <div className="user-img">
+                                        <img className="border-radius" src="images/user.jpg" alt="Image of User" />
                                     </div>
-                                    <div class="form-group flex-fill w-50 border-radius overflow-hidden">
-                                        <div class="input-group">
-                                            <textarea class="form-control shadow-none py-3" cols="30" rows="3" placeholder="What's something?"></textarea>
+                                    <div className="form-group flex-fill w-50 border-radius overflow-hidden">
+                                        <div className="input-group">
+                                            <textarea className="form-control shadow-none py-3" cols={30} rows={3} placeholder="What's something?" defaultValue={""} />
                                         </div>
                                     </div>
                                 </div>
-                                <div class="post-form-control d-flex flex-wrap mt-3">
-                                    <div class="post-form-control-select d-flex flex-wrap">
-                                        <label for="inputFile"><i class='bx bxs-image-alt' ></i></label>
-                                        <input id="inputFile" type="file" multiple class="form-control d-none" />
-                                        <div class="post-form-control-comunity mx-3">
-                                            <span class="border-radius">
-                                                <i class='bx bx-globe'></i> Everyone can reply
+                                <div className="post-form-control d-flex flex-wrap mt-3">
+                                    <div className="post-form-control-select d-flex flex-wrap">
+                                        <label htmlFor="inputFile"><i className="bx bxs-image-alt" /></label>
+                                        {/* upload images on layout */}
+                                        <input id="inputFile" type="file" multiple className="form-control d-none" accept="image/*" onChange={changeFile}/>
+                                        
+                                        <div className="post-form-control-comunity mx-3">
+                                            {/* Show status clicked and hidden menu status */}
+                                            <span className="status border-radius" onClick={() => clickHidden()}>
+                                                <i className="bx bx-globe" /> {data.status}
                                             </span>
-                                            <div class="user-panel post-form-panel box-shadow border-radius active">
-                                                <h5 class="color-black">Who can reply?</h5>
+                                            <div className="user-panel post-form-panel box-shadow border-radius">
+                                                <h5 className="color-black">Who can reply?</h5>
                                                 <h6>Choose who can reply to this Tweet?</h6>
+                                                {/* Click change status */}
                                                 <ul>
                                                     <li>
-                                                        <a href=""><i class='bx bx-globe'></i> Everyone</a>
+                                                        <a href='#' onClick={() => {changeStatus(1)}}><i className="bx bx-globe"/> Everyone</a>
                                                     </li>
                                                     <li>
-                                                        <a href=""><i class='bx bxs-group' ></i> People you follow</a>
+                                                        <a href='#' onClick={() => {changeStatus(2)}}><i className="bx bxs-group" /> People you follow</a>
                                                     </li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="post-form-control-btn flex-fill w- text-end">
-                                        <button class="btn btn-post-form btn-border-radius">Tweet</button>
+                                    <div className="post-form-control-btn flex-fill w- text-end">
+                                        <button className="btn btn-post-form btn-border-radius">Tweet</button>
                                     </div>
                                 </div>
+                                {/* Create images */}
+                                <div className="d-flex mt-3 flex-wrap justify-content-start">
+                                    {dataImg.map((item,index) => {
+                                        return <div key={index} className="image-contaniner d-flex position-relative">
+                                        <img src={item.url} alt='image' />
+                                        <span className="position-absolute image-contaniner-remove" onClick={() => {deleteImage(index)}}>X</span>
+                                    </div>
+                                    })}
+                                </div>
                             </div>
-                            <Posts />
-                        </div>
+                            
+                            {
+                                posts.map((item, index) => {
+                                    return <Post key={index} idx={item.idPost} status={item.status} img={item.img} />
+                                })
+                            }
+                            </div>
                         <div className="col-md-3 order-md-1 order-0">
                             <div className="vertical-trending border-radius box-shadow mt-3 mt-md-0">
                                 <h5 className="color-black">Trends for you</h5>
@@ -80,13 +214,14 @@ const Explore = (props) => {
                                     </li>
                                 </ul>
                             </div>
-                        </div> 
+                        </div>
                         <MenuClone />
                     </div>
                 </div>
             </div>
             <Footer />
         </div>
+
     );
 };
 

@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Post from './Post';
 
 const Posts = () => {
+
     return (
         <div>
-            <Post />
+            <Post/>
         </div>
     );
 };
