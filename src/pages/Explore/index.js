@@ -1,5 +1,6 @@
 import React, {useEffect,useState} from 'react';
 import Footer from '../../components/Footer';
+import Header from '../../components/Header';
 import MenuClone from '../../components/Main/components/MenuClone';
 import Posts from '../../components/Main/components/Posts';
 import Post from '../../components/Main/components/Posts/Post';
@@ -116,6 +117,7 @@ const Explore = (props) => {
             ]
         )
 
+        e.target.value = null
     }
 
     // Function delete image
@@ -127,11 +129,12 @@ const Explore = (props) => {
 
     return (
         <div>
+            <Header />
             <div className="main">
                 <div className="container mt-4">
                     <div className="row">
                         <div className="col-md-9 order-md-0 order-1">
-                            <div className="post-form border-radius box-shadow mt-md-0 mt-3">
+                            <div className="post-form border-radius box-shadow mt-md-0 mt-3 mb-3">
                                 <h5 className="color-black">Tweet something</h5>
                                 <hr />
                                 <div className="post-comment-box d-flex flex-wrap">
@@ -177,9 +180,9 @@ const Explore = (props) => {
                                 {/* Create images */}
                                 <div className="d-flex mt-3 flex-wrap justify-content-start">
                                     {dataImg.map((item,index) => {
-                                        return <div key={index} className="image-contaniner d-flex position-relative">
+                                        return <div key={index} className="image-contaniner border-radius d-flex position-relative">
                                         <img src={item.url} alt='image' />
-                                        <span className="position-absolute image-contaniner-remove" onClick={() => {deleteImage(index)}}>X</span>
+                                        <span className="position-absolute image-contaniner-remove" onClick={() => {deleteImage(index)}}><i className="bx bx-x"></i></span>
                                     </div>
                                     })}
                                 </div>

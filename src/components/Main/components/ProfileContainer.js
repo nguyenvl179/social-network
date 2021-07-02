@@ -48,7 +48,7 @@ const ProfileContainer = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-12">
-                        <div className="box-my-profile">
+                        <div className="box-my-profile box-shadow">
                             <div className="row">
                                 <div className="col-md-2">
                                     <div className="box-image-profile border-radius">

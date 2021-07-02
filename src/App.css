@@ -4,12 +4,14 @@
     --mainColor: #2F80ED;
     --background: #FAFAFB;
     --backgroundSecond: #FFFFFF;
+    --backgroundThird: #F2F2F2;
     --txtColor: #828282;
     --txtColorSecond: #000000;
     --txtColorThird: #BDBDBD;
     --txtRetweeted: #27AE60;
     --txtLiked: #EB5757;
     --txtSaved: #2D9CDB;
+    --borderColor: #dbdbdb;
 }
 
 html {
@@ -80,7 +82,8 @@ ul {
 }
 
 .box-shadow {
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+    /* box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05); */
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .bold {
@@ -150,7 +153,7 @@ ul {
     align-items: center;
     border-radius: 10px;
     white-space: nowrap;
-    color: var(--txtColorSecond);
+    color: var(--txtColorSecond) !important;
 }
 
 .user-panel a:hover {
@@ -221,7 +224,6 @@ nav, .menu-clone-contain {
 
 .box-my-profile {
     padding: 1.5rem 1rem;
-    box-shadow: 0rem .2rem .4rem rgba(0, 0, 0, 0.05);
     border-radius: 1.2rem; 
     margin-top: -4.5rem;
     background: var(--backgroundSecond);
@@ -302,7 +304,6 @@ nav, .menu-clone-contain {
 
 .vertical-menu, .vertical-trending, .post-form {
     background: var(--backgroundSecond);
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
     position: sticky;
     left: 0;
     top: 7.58rem;
@@ -317,10 +318,9 @@ nav, .menu-clone-contain {
 }
 
 .vertical-menu a {
-    padding: 1rem 1.5rem;
+    padding: 1.5rem;
     display: block;
     position: relative;
-    overflow: hidden;
     transition: all 0.4s ease;
 }
 
@@ -343,13 +343,13 @@ nav, .menu-clone-contain {
 .vertical-menu a::after {
     content: "";
     position: absolute;
-    width: .4rem;
+    width: .3rem;
     height: 60%;
     left: -0.1rem;
     top: 50%;
     transform: translateY(-50%);
     background: var(--mainColor);
-    border-radius: 1.5rem;
+    border-radius: 0rem 1.5rem 1.5rem 0rem;
     opacity: 0;
     transition: all 0.4s ease;
 }
@@ -494,7 +494,7 @@ nav, .menu-clone-contain {
 .btn-close-modal-box {
     width: 4rem;
     height: 4rem;
-    line-height: 4rem;
+    line-height: 4.5rem;
     color: var(--backgroundSecond);
     position: absolute;
     left: 0;
@@ -503,6 +503,10 @@ nav, .menu-clone-contain {
     background: rgba(0, 0, 0, 0.5);
     cursor: pointer;
     font-size: 1.6rem;
+}
+
+.btn-close-modal-box i {
+    font-size: 2rem;
 }
 
 .modal-box-img-control {
@@ -551,6 +555,10 @@ nav, .menu-clone-contain {
 
 .post-form input[type="text"], .post-form textarea {
     background: var(--backgroundSecond);
+}
+
+.post-comment-contain.hide {
+    display: none;
 }
 
 .post-comment-form input[type="text"] {
@@ -633,8 +641,11 @@ nav, .menu-clone-contain {
 .menu-clone-contain a::after {
     width: 50%;
     left: 50%;
-    bottom: -1.5rem;
-    transform: translateX(-50%);
+    transform: translateX(-50%) scaleX(0) !important;
+}
+
+.menu-clone-contain a.active::after {
+    transform: translateX(-50%) scaleX(1) !important;
 }
 
 .menu-clone-contain a:not(.active):hover::after {
@@ -698,21 +709,29 @@ nav, .menu-clone-contain {
     width: 15rem;
     height: 15rem;
     padding: 0;
-    margin: 0rem 1.5rem 1.5rem 0rem;
+    margin: 0rem .5rem .5rem 0rem;
+    overflow: hidden;
+    flex-grow: 1;
 }
-
 .image-contaniner-remove {
     width: 3rem;
     height: 3rem;
     cursor: pointer;
     text-align: center;
-    line-height: 3rem;
+    line-height: 3.2rem;
     border-radius: 50%;
-    background: var(--txtColorThird);
+    background: var(--mainColor);
     color: var(--background);
-    opacity: 0.8;
-    right: -1.5rem;
-    top: -1.5rem;
+    border: 0.2rem solid var(--background);
+    right: .5rem;
+    top: .5rem;
+    box-sizing: border-box;
+}
+
+.image-contaniner-remove i {
+    font-size: 1.9rem;
+    color: var(--background);
+    font-weight: 700;
 }
 
 .image-contaniner-remove:hover {

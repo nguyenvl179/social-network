@@ -7,7 +7,7 @@ const Comment = ({cmtId, userImg, userName, cmtContent, isLike, cmtDate}) => {
                 <div className="post-user-img user-img">
                     <img className="border-radius" src={userImg} alt="Image of User" />
                 </div>                                        
-                <div className="post-comment-contain w-75 flex-grow-1 pt-3 pt-md-0">
+                <div className="post-comment-contain w-75 flex-grow-1">
                     <div className="form-group post-comment-content p-3 border-radius overflow-hidden">
                         <div className="post-comment-author">
                             <a href="" className="post-comment-author-name color-black">

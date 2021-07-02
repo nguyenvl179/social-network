@@ -1,0 +1,16 @@
+.setting-contain {
+    padding: 1rem 1.5rem;
+    background: #ffffff;
+    box-sizing: border-box;
+}
+
+.menu-setting-contain li {
+    display: block;
+    cursor: pointer;
+    padding: 1rem 1rem;
+    box-sizing: border-box;
+}
+
+.menu-setting-contain li:hover {
+    background: var(--backgroundThird);
+}

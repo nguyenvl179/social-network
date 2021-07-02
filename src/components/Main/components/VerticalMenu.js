@@ -2,7 +2,7 @@ import React from 'react';
 
 const VerticalMenu = () => {
     return (
-        <div className="vertical-menu py-3 border-radius">
+        <div className="vertical-menu py-3 border-radius box-shadow mb-3">
             <ul>
                 <li>
                     <a href="">Tweet</a>

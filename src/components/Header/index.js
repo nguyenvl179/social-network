@@ -5,7 +5,7 @@ import UserControl from './components/UserControl';
 
 function Header(props) {
     return (
-        <nav>
+        <nav className="box-shadow">
             <div className="container">
                 <div className="row navigation p-md-0 pt-3 pb-3">
                     <Logo />
